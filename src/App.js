@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
 
-class Couner extends React.Component {  
+class Counter extends React.Component {  
   constructor(){  
     super();  
     this.state = {  
-        count : 0  
+        count : 0,
     }; 
     this.incrementCounter = this.incrementCounter.bind(this);
     this.decrementCounter = this.decrementCounter.bind(this); 
@@ -32,6 +32,7 @@ class Couner extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div id="count">
@@ -53,7 +54,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Couner />
+        <Counter />
       </header>
     </div>
   );
