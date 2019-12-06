@@ -21,3 +21,8 @@ class App extends React.Component{
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
+/*
+добавить рычажок, по нажатию на который будет что-то менятся на странице
+это может быть текст или язык 
+*/
+

@@ -2,12 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {incCount, decCount, addNum} from '../actions/index';
+import {incCount, decCount, addNum, changeSyst} from '../actions';
 
 class Counter extends React.Component {
     render() {
         return (
           <div id="count">
+            <div className="changeSyst">
+                <button className="App-buttons" onClick={this.props.onChange}>{this.props.typeL}</button>
+            </div>
             <div>
               <h1>{this.props.count}</h1>
               <button className="App-buttons" onClick={this.props.onIncrement}>+1</button>
@@ -21,10 +24,11 @@ class Counter extends React.Component {
         )
     }
 }
-    
+
 const mapStateToProps = state => {
     return {
-        count: state.counter.count
+        count: state.counter.count,
+        typeL: state.counter.typeLg
     }
 }
 
@@ -32,7 +36,8 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({
         onIncrement: incCount,
         onDecrement: decCount,
-        onAddNumber: addNum
+        onAddNumber: addNum, 
+        onChange: changeSyst
     }, dispatch)
 }
 
