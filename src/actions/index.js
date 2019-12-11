@@ -1,20 +1,19 @@
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
-export const ADD_NUMBER = 'ADD_NUMBER';
-export const CHANGE_SYSTEM = 'CHANGE_SYSTEM';
-
-export function incCount() {
-  return ({ type: INCREMENT});
+export function incrementCount() {
+  return ({ type: 'INCREMENT'});
 }
 
-export function decCount() {
-  return ({ type: DECREMENT});
+export function decrementCount() {
+  return ({ type: 'DECREMENT'});
 }
 
-export function addNum() {
-  return ({ type: ADD_NUMBER});
+export function addNumber() {
+  return ({ type: 'ADD_NUMBER'});
 }
 
-export function changeSyst() {
-    return ({ type: CHANGE_SYSTEM});
+export function changeToRomCount() {
+    return ({ type: 'CHANGE_TO_ROM'});
+}
+
+export function changeToArbCount() {
+  return ({ type: 'CHANGE_TO_ARB'});
 }
