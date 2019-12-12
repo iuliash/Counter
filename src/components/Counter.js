@@ -2,17 +2,51 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {incrementCount, decrementCount, addNumber, changeToRomCount, changeToArbCount} from '../actions';
+import {incrementCount, decrementCount, addNumberToCount, changeToRomCount, changeToArbCount} from '../actions';
 
 class Counter extends React.Component {
     
     changeSystemCounter = () => {
-        if (this.props.typeL === 'Abr')
-          this.props.changeToRom();
-        else if (this.props.typeL === 'Rim')
-          this.props.changeToArb();
+        const font_ar = [1,5,10,50,100,500,1000];
+        const font_rom = ["I","V","X","L","C","D","M"];
+        let _count = this.props.count;
+        let _typeL = this.props.typeL;
+        if (_typeL === 'Abr') 
+        {
+          if (!_count) return "";
+          let st = "";
+          let n = font_ar.length - 1;
+          while (_count > 0) {
+             if (_count >= font_ar[n]) {
+                 st += font_rom[n];
+                 _count -= font_ar[n];
+             }
+             else n--;
+          }
+          this.props.changeToRom(st);
+        } 
+        else if (_typeL === 'Rim') 
+        {
+          let rezult = 0;
+          let posit = 0;
+          let n = font_ar.length - 1;
+          while (n >= 0 && posit < _count.length) {
+            if (_count.substr(posit, font_rom[n].length) == font_rom[n]) {
+                rezult += font_ar[n];
+                posit += font_rom[n].length;
+            }
+            else n--;
+          }
+          this.props.changeToArb(rezult); 
+        }
     }
-  
+
+    takeNumber = () => {
+      let text = document.getElementById('inp');
+      let val = parseInt(text.value);
+      this.props.addNumber(val);
+    }
+
     render() {
         return (
           <div id="count">
@@ -26,7 +60,7 @@ class Counter extends React.Component {
             </div>
             <div>
               <input className="App-input" type="text" id="inp"></input>
-              <button className="App-buttons" onClick={this.props.addNumber}>Add</button>
+              <button className="App-buttons" onClick={this.takeNumber}>Add</button>
             </div>
           </div>
         )
@@ -44,7 +78,7 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({
         increment: incrementCount,
         decrement: decrementCount,
-        addNumber: addNumber, 
+        addNumber: addNumberToCount, 
         changeToRom: changeToRomCount, 
         changeToArb: changeToArbCount
     }, dispatch)

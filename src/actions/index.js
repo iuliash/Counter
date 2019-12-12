@@ -6,14 +6,14 @@ export function decrementCount() {
   return ({ type: 'DECREMENT'});
 }
 
-export function addNumber() {
-  return ({ type: 'ADD_NUMBER'});
+export function addNumberToCount(number) {
+  return ({ type: 'ADD_NUMBER', number});
 }
 
-export function changeToRomCount() {
-    return ({ type: 'CHANGE_TO_ROM'});
+export function changeToRomCount(romNumber) {
+    return ({ type: 'CHANGE_TO_ROM', romNumber});
 }
 
-export function changeToArbCount() {
-  return ({ type: 'CHANGE_TO_ARB'});
+export function changeToArbCount(arbNumber) {
+  return ({ type: 'CHANGE_TO_ARB', arbNumber});
 }

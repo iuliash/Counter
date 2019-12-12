@@ -1,22 +1,36 @@
-import {handleChange, convertToRim, convertToArb} from './counterFunction'
-
 const firstStateCount = {
     count: 0,
     typeLg: 'Abr' 
 }
 
 export default function counter(state = firstStateCount, action) {
+    let {count} = state;
     switch(action.type) {
       case 'INCREMENT':
-        return handleChange(state, 1);
+        return  ({
+          count: count + 1,
+          typeLg: 'Abr'
+        });
       case 'DECREMENT':
-        return handleChange(state, -1);
+        return ({
+          count: count - 1,
+          typeLg: 'Abr'
+        });
       case 'ADD_NUMBER':
-        return handleChange(state);
+        return ({
+          count: count + action.number,
+          typeLg: 'Abr'
+        });
       case 'CHANGE_TO_ROM':
-        return convertToRim(state);
+        return ({
+          count: action.romNumber,
+          typeLg: 'Rim'
+        });  
       case 'CHANGE_TO_ARB':
-        return convertToArb(state);
+        return ({
+          count: action.arbNumber,
+          typeLg: 'Abr'
+        });  
       default:
         return state;
     }
