@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {incrementCount, decrementCount, addNumberToCount, changeToRomCount, changeToArbCount} from '../actions';
+import {incrementCount, decrementCount, addNumberToCount, changeToRomCount, changeToArbCount, changeNumberCount} from '../actions';
 
 class Counter extends React.Component {
     
@@ -23,7 +23,8 @@ class Counter extends React.Component {
              }
              else n--;
           }
-          this.props.changeToRom(st);
+          this.props.changeNumber({count: st})
+          this.props.changeToRom({typeLg: 'Rom'});
         } 
         else if (_typeL === 'Rom') 
         {
@@ -37,16 +38,28 @@ class Counter extends React.Component {
             }
             else n--;
           }
-          this.props.changeToArb(rezult); 
+          this.props.changeNumber({count: rezult})
+          this.props.changeToArb({typeLg: 'Abr'}); 
         }
     }
 
     takeNumber = () => {
       let text = document.getElementById('inp');
       let val = parseInt(text.value);
-      this.props.addNumber(val);
+      let _count = this.props.count;
+      this.props.addNumber({count: _count + val});
     }
 
+    incCounter = () => {
+      let _count = this.props.count;
+      this.props.increment({count: _count + 1});
+    }
+
+    decCounter = () => {
+      let _count = this.props.count;
+      this.props.increment({count: _count - 1});
+    }
+    
     render() {
         return (
           <div id="count">
@@ -55,8 +68,8 @@ class Counter extends React.Component {
             </div>
             <div>
               <h1>{this.props.count}</h1>
-              <button className="App-buttons" onClick={this.props.increment}>+1</button>
-              <button className="App-buttons" onClick={this.props.decrement}>-1</button>
+              <button className="App-buttons" onClick={this.incCounter}>+1</button>
+              <button className="App-buttons" onClick={this.decCounter}>-1</button>
             </div>
             <div>
               <input className="App-input" type="text" id="inp"></input>
@@ -69,8 +82,8 @@ class Counter extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        count: state.counter.count,
-        typeL: state.counter.typeLg
+      count: state.counterNumber.count,
+      typeL: state.counterType.typeLg
     }
 }
 
@@ -80,7 +93,8 @@ const mapDispatchToProps = dispatch => {
         decrement: decrementCount,
         addNumber: addNumberToCount, 
         changeToRom: changeToRomCount, 
-        changeToArb: changeToArbCount
+        changeToArb: changeToArbCount, 
+        changeNumber: changeNumberCount
     }, dispatch)
 }
 

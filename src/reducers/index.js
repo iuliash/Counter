@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-import counter from './counter';
+import counterNumber from './counterNumber';
+import counterType from './counterType'
 
 export default combineReducers({
-  counter,
+  counterNumber, 
+  counterType
 });

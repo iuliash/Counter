@@ -1,19 +1,23 @@
-export function incrementCount() {
-  return ({ type: 'INCREMENT'});
+export function incrementCount(obj) {
+  return ({ type: 'INCREMENT', obj});
 }
 
-export function decrementCount() {
-  return ({ type: 'DECREMENT'});
+export function decrementCount(obj) {
+  return ({ type: 'DECREMENT', obj});
 }
 
-export function addNumberToCount(number) {
-  return ({ type: 'ADD_NUMBER', number});
+export function addNumberToCount(obj) {
+  return ({ type: 'ADD_NUMBER', obj});
 }
 
-export function changeToRomCount(romNumber) {
-    return ({ type: 'CHANGE_TO_ROM', romNumber});
+export function changeToRomCount(obj) {
+    return ({ type: 'CHANGE_TO_ROM', obj});
 }
 
-export function changeToArbCount(arbNumber) {
-  return ({ type: 'CHANGE_TO_ARB', arbNumber});
+export function changeToArbCount(obj) {
+  return ({ type: 'CHANGE_TO_ARB', obj});
+}
+
+export function changeNumberCount(obj) {
+  return ({ type: 'CHANGE_NUMBER', obj});
 }
