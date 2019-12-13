@@ -7,33 +7,16 @@ export default function counter(state = firstStateCount, action) {
     let {count} = state;
     switch(action.type) {
       case 'INCREMENT':
-        return  ({
-          count: count + 1,
-          typeLg: 'Abr'
-        });
+        return  Object.assign({}, state, {count: count + 1})
       case 'DECREMENT':
-        return ({
-          count: count - 1,
-          typeLg: 'Abr'
-        });
+        return Object.assign({}, state, {count: count - 1})
       case 'ADD_NUMBER':
-        return ({
-          count: count + action.number,
-          typeLg: 'Abr'
-        });
+        return Object.assign({}, state, {count: count + action.number})
       case 'CHANGE_TO_ROM':
-        return ({
-          count: action.romNumber,
-          typeLg: 'Rim'
-        });  
+        return Object.assign({}, state, {count: action.romNumber, typeLg: 'Rom'})
       case 'CHANGE_TO_ARB':
-        return ({
-          count: action.arbNumber,
-          typeLg: 'Abr'
-        });  
-      default:
-        return state;
-    }
+        return Object.assign({}, state, {count: action.arbNumber, typeLg: 'Abr'}) 
+      default: return state;
+      }
   }
-
   

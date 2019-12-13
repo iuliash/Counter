@@ -25,7 +25,7 @@ class Counter extends React.Component {
           }
           this.props.changeToRom(st);
         } 
-        else if (_typeL === 'Rim') 
+        else if (_typeL === 'Rom') 
         {
           let rezult = 0;
           let posit = 0;
